@@ -1,0 +1,113 @@
+.navBar {
+    background-color: #005a96;
+    width:100%;
+    height :100px;
+    position: relative;
+    padding: 25px;
+    margin : auto;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display : inline-block;
+}
+
+.card {
+    font-family : "Lato";
+    background-color :whitesmoke;
+    padding : 14px;
+    margin : auto;
+    width:70%;
+    box-shadow: 0 8px 16px 0 rgba(8, 77, 129, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* for Mozilla Firefox */
+    -moz-box-shadow: 0 8px 16px 0 rgba(8, 77, 129, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* For Safari and Chrome */
+    -webkit-box-shadow: 0 8px 16px 0 rgba(8, 77, 129, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card_details {
+    font-family : "Lato";
+    height : 100%;
+    padding : 15px;
+    margin : 100px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align:center;
+}
+
+.count {
+    margin: auto;
+    width: 70%;
+}
+
+
+.name {
+    font-size : 25px;
+    font-weight: bold;
+}
+
+input[type=text] {
+    font-family : "Lato";
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 55%;
+    background: #f1f1f1;
+}
+
+.searchButton {
+    margin-left: -30px;
+    margin-top: 1px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    height: 31px;
+    font-family : "Lato";
+    background: #f1f1f1;
+}
+
+.dropDown {
+    float: right;
+    font-family : "Lato";
+    font-size: 15px;
+    height :33px;
+    border: 1px solid grey;
+    width: 55%;
+    background: #f1f1f1;
+}
+
+.detailButton {
+    font-family : "Lato";
+    padding-top: 87px;
+}
+
+img {
+    border-radius : 50%;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+th {
+    text-align: center;
+}
+
+.footer {
+    width:100%;
+    position:sticky;
+    font-size:13px;
+    text-align:center;
+    background-color:#005a96;
+    font-weight: bold;
+    color: white;
+}
+
+noData {
+    text-align:center;
+}

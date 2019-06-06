@@ -1,20 +1,95 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!--Nav Bar-->
+<div class="container navBar">
+  <div class="row">
+    <div class="col-xs-6">
+      <select class="dropDown" [(ngModel)]="selectedSort" (click)="SortingResult()">
+        <option value="NameAlphabeticallyAZ">Sort By Name (A-Z)</option>
+        <option value="NameReverseAlphabeticallyZA">Sort By Name (Z-A)</option>
+        <option value="RankUp">Highest Rank↑ </option>
+        <option value="RankDown">Lowest Rank↓</option>
+      </select>
+    </div>
+    <div class="col-xs-6">
+      <input type="text" id="inputName" [(ngModel)]="inputName" placeholder="Search by Names" />
+      <button class="searchButton" (click)="searchByName()">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+
+<!--Main Body-->
+<div class="container">
+  <div class="row">
+    <div class="count" *ngIf="totalUserCount > 0">
+      <b>Total Results:</b> {{totalUserCount}}
+    </div>
+    <div *ngIf="totalUserCount == 0" class="noData">
+      No data available for given search keyword :
+      <b>{{inputName}}</b>. Try searching other names like "Kapil", "Nimesh"...
+    </div>
+    <div *ngFor="let user of userDataItems">
+      <div class="card row">
+
+
+        <!--user image-->
+        <div class="col-sm-3">
+          <img src={{user.avatar_url}} width="120px" height="120px">
+        </div>
+        <div class="col-sm-7">
+          <div class="name">{{user.login}}</div>
+          <div>
+            <b>Profile URL:</b> {{user.url}}</div>
+        </div>
+
+
+        <!--Details Button-->
+        <div class="collapsed active detailButton col-sm-2" data-toggle="collapse" [attr.data-target]="'#'+user.login">
+          <button class="btn btn-primary" (click)="getUserFullDetails(user.login, user.id)">
+            Details
+            <span class="caret"></span>
+          </button>
+        </div>
+
+        <!--Details Card-->
+        <div id={{user.login}} class="collapse card_details">
+          <div class="row">
+            <table class="table table-striped">
+              <tbody>
+                <tr *ngFor="let userRepo of userDetails">
+                  <td>{{userRepo.name}}</td>
+                  <td>{{userRepo.language}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Pagination-->
+<div *ngIf="totalUserCount > 0">
+  <div class="btn-toolbar" role="toolbar" style="margin: 0;">
+    <div class="btn-group">
+      <label style="margin-top:10px">Page {{currentIndex}}/{{pageNumber}}</label>
+    </div>
+    <div class="btn-group pull-right">
+      <ul class="pagination">
+        <li [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}">
+          <a (click)="prevPage()" href="#">Previous</a>
+        </li>
+        <li *ngFor="let page of pagesIndex" [ngClass]="{'active': (currentIndex == page)}">
+          <a (click)="setPage(page)" href="#">{{page}}</a>
+        </li>
+        <li [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}">
+          <a (click)="nextPage()" href="#">Next</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
