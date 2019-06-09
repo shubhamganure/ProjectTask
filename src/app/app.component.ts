@@ -24,7 +24,7 @@ export class AppComponent {
   pageStart: number = 1;
 
   constructor(private gitRestService: GithubRestApiService) {
-    //default call for Shantanu on initialization
+    //default call for Sachin124 on initialization
     this.gitRestService.getGithubUsersByName("Sachin124")
       .then(responseData => {
         this.userDataSet = responseData;
